@@ -41,6 +41,6 @@ jobs:
 
       - name: Expose the port and start the application
         run: Expose 9090
-
-CMD ["npm","start"]
-
+        
+      - name: Start NPM
+        run: CMD ["npm","start"]
