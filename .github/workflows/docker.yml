@@ -23,30 +23,24 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: WORKDIR /app
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: FROM node:9
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-       FROM node:9
+      - name: Install app dependencies
+        run: COPY package*.json ./
+        
+      - name: Run npm install
+        run: RUN npm install
+     
+      - name: Copying rest of the application to app directory
+        run: COPY . /app
 
-# Create app directory
-WORKDIR /app
-
-# Install app dependencies
-COPY package*.json ./
-
-RUN npm install
-
-# Copying rest of the application to app directory
-COPY . /app
-
-# Expose the port and start the application
-Expose 8080
+      - name: Expose the port and start the application
+        run: Expose 9090
 
 CMD ["npm","start"]
 
